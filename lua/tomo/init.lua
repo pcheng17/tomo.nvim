@@ -1,6 +1,8 @@
 local M = {}
 
---- Put the `char` variable at the beginning of the line. If present, remove it.
+M.opts = {}
+
+--- Put the `char` string at the end of the line. If present, remove it.
 --- Thanks to https://github.com/mrs4ndman/random.nvim
 ---@param chars string
 function M.put_at_end(chars)
@@ -16,6 +18,10 @@ function M.put_at_end(chars)
     else
         vim.api.nvim_buf_set_text(0, row, col, row, col, { chars })
     end
+end
+
+function M.setup(opts)
+      M.opts = vim.tbl_deep_extend('force', M.opts, opts or {})
 end
 
 return M
